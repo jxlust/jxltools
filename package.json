@@ -1,0 +1,40 @@
+{
+  "name": "jxltools",
+  "version": "1.0.0",
+  "description": "我是jxlust的前端工具包",
+  "main": "lib/bundle.cjs.js",
+  "jsnext:main": "lib/bundle.esm.js",
+  "module": "lib/bundle.esm.js",
+  "browser": "dist/index.ts",
+  "scripts": {
+    "dev": "npx rollup -wc rollup.config.dev.js",
+    "build": "npx rollup -c rollup.config.js && npm run copy",
+    "publish": "node scripts/publish.js",
+    "copy": "cp package.json README.md dist",
+    "test": "ts-node test/test.ts"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:jxlust/jxltools.git"
+  },
+  "keywords": [
+    "toolkit",
+    "rollup",
+    "typescript"
+  ],
+  "author": "jxlust",
+  "license": "MIT",
+  "devDependencies": {
+    "@rollup/plugin-babel": "^5.3.1",
+    "@rollup/plugin-eslint": "^8.0.2",
+    "commander": "^9.2.0",
+    "rollup": "^2.74.1",
+    "rollup-plugin-commonjs": "^10.1.0",
+    "rollup-plugin-json": "^4.0.0",
+    "rollup-plugin-node-resolve": "^5.2.0",
+    "rollup-plugin-typescript": "^1.0.1",
+    "shelljs": "^0.8.5",
+    "tslib": "^2.4.0",
+    "typescript": "^4.6.4"
+  }
+}
