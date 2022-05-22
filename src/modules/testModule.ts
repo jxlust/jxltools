@@ -1,4 +1,4 @@
-export const printWorld = (w:any) => {
-    console.log(`hellow ${w}`);
-    return w;
-}
+export const printWorld = (w: any) => {
+  console.log(`hellow ${w}`);
+  return w;
+};

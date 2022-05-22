@@ -12,7 +12,9 @@
     "publish": "node scripts/publish.js",
     "copy": "cp package.json README.md dist",
     "test": "ts-node test/test.ts",
-    "lint": "eslint 'src/**/*.{js,ts}'"
+    "lint": "eslint 'src/**/*.{js,ts}'",
+    "prettier": "prettier --write --loglevel log 'src/**/*.{js,json,tsx,css,less,scss,vue,html,md,ts}'"
+
   },
   "repository": {
     "type": "git",
