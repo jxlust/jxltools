@@ -59,7 +59,7 @@
   "lint-staged": {
     "*./src/**/*.{js,ts,json,css,less,md}": [
       "prettier --write",
-      "yarn lint"
+      "npm run lint"
     ]
   }
 }
