@@ -1,9 +1,11 @@
 import resolve from "rollup-plugin-node-resolve";
 import commonjs from "rollup-plugin-commonjs";
-import typescript from "rollup-plugin-typescript";
+import typescript from "@rollup/plugin-typescript";
 import json from "rollup-plugin-json";
 import eslint from "@rollup/plugin-eslint";
 import { babel } from "@rollup/plugin-babel";
+import {terser} from 'rollup-plugin-terser';//压缩代码
+// import postcss from 'rollup-plugin-postcss';//打包css
 
 import pkg from "./package.json";
 const formatName = "mytools";
@@ -16,7 +18,7 @@ export default {
   //     name: formatName,
   //   },
 
-  // external: ['lodash'],//
+  external: ['lodash'],//lodash 第三方库不被整合进来
   output: [
     {
       file: pkg.main,
@@ -48,5 +50,6 @@ export default {
     typescript(), // 解析TypeScript
     eslint(),
     babel({ exclude: "node_modules/**" }),
+    terser(),
   ],
 };

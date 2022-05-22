@@ -10,6 +10,6 @@ export default {
       contentBase: "",
       port: 8020,
     }),
-    livereload("src"),
+    // livereload("src"),
   ],
 };
