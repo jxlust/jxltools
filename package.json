@@ -13,8 +13,8 @@
     "copy": "cp package.json README.md dist",
     "test": "ts-node test/test.ts",
     "lint": "eslint 'src/**/*.{js,ts}'",
-    "prettier": "prettier --write --loglevel log 'src/**/*.{js,json,tsx,css,less,scss,vue,html,md,ts}'"
-
+    "prettier": "prettier --write --loglevel log 'src/**/*.{js,json,tsx,css,less,scss,vue,html,md,ts}'",
+    "prepare": "husky install"
   },
   "repository": {
     "type": "git",
@@ -39,7 +39,7 @@
     "@typescript-eslint/parser": "^5.25.0",
     "commander": "^9.2.0",
     "eslint": "^8.16.0",
-    "husky": "^8.0.1",
+    "husky": "^8.0.0",
     "lint-staged": "^12.4.1",
     "prettier": "^2.6.2",
     "rollup": "^2.74.1",
