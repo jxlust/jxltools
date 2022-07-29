@@ -14,7 +14,9 @@
     "test": "ts-node test/test.ts",
     "lint": "eslint 'src/**/*.{js,ts}'",
     "prettier": "prettier --write --loglevel log 'src/**/*.{js,json,tsx,css,less,scss,vue,html,md,ts}'",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "prepare:pre": "cd .. && husky install pluginTools/.husky"
+
   },
   "repository": {
     "type": "git",
