@@ -1,11 +1,11 @@
 {
-  "name": "jxlust-cli",
-  "version": "1.0.8",
+  "name": "web-cli-test",
+  "version": "0.0.1",
   "description": "",
   "type": "module",
   "main": "index.ts",
   "bin": {
-    "jxlust-cli": "./bin/cli.js"
+    "web-cli-test": "./bin/cli.js"
   },
   "scripts": {
     "start": "node --loader ts-node/esm index.ts",

@@ -3,21 +3,21 @@ import { program } from "commander";
 import chalk from "chalk";
 import inquirer from "inquirer";
 import download from "download-git-repo";
-import path from "path";
-import fs from "fs";
+// import path from "path";
+// import fs from "fs";
 
 console.log("\u{1f468} jxlust-cli working \u{1f4BB} ...");
-let currenDir = path.resolve();
+// let currenDir = path.resolve();
 
-const packageJsonPath = path.resolve(currenDir, "./package.json");
-const packageJson = fs.readFileSync(packageJsonPath, "utf-8");
+// const packageJsonPath = path.resolve(currenDir, "./package.json");
+// const packageJson = fs.readFileSync(packageJsonPath, "utf-8");
 let version = "0.0.1";
-try {
-  const packageObject = JSON.parse(packageJson);
-  version = packageObject.version;
-} catch (error) {
-  console.log("package.json error!");
-}
+// try {
+//   const packageObject = JSON.parse(packageJson);
+//   version = packageObject.version;
+// } catch (error) {
+//   console.log("package.json error!");
+// }
 
 const githubPathMap = new Map([
   ["vue", "github:jxlust/JxlVueTpl#template"],
