@@ -6,12 +6,12 @@ import download from "download-git-repo";
 // import path from "path";
 // import fs from "fs";
 
-console.log("\u{1f468} jxlust-cli working \u{1f4BB} ...");
+console.log("\u{1f468} jxlust-cli working \u{1f345} ...");
 // let currenDir = path.resolve();
 
 // const packageJsonPath = path.resolve(currenDir, "./package.json");
 // const packageJson = fs.readFileSync(packageJsonPath, "utf-8");
-let version = "0.0.1";
+let version = "1.1.0";
 // try {
 //   const packageObject = JSON.parse(packageJson);
 //   version = packageObject.version;
@@ -20,7 +20,7 @@ let version = "0.0.1";
 // }
 
 const githubPathMap = new Map([
-  ["vue", "github:jxlust/JxlVueTpl#template"],
+  ["vue", "github:jxlust/JxlVueTpl"],
   ["vue-h5", "github:jxlust/JxlVueTpl#h5-tpl"],
   ["react", "github:jxlust/vite-react18"],
   ["vuessr", "github:jxlust/Vue3_Vite_Koa2_SSR"],
