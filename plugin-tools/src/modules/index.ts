@@ -1,4 +1,4 @@
-import { printWorld } from './modules/testModule';
+import { printWorld } from './testModule';
 // import './test.css';
 export function add(params: any) {
   const text = 'text show';
