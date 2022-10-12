@@ -1,4 +1,3 @@
-
 /* 圆角矩形
  * @param int/float x            矩形位置x坐标
  * @param int/float y            矩形位置y坐标
@@ -78,8 +77,16 @@ interface InviteOptions {
   bgImgUrl: string;
   qrCodeUrl: string;
   avatarUrl: string;
+  size: number; //几倍图
   imgUrlLists?: string[]; //背景图url，二维码url,头像url
 }
+const CANVAS_WIDTH = 375;
+const CANVAS_HEIGHT = 600;
+const CONTENT_TOP = 200;
+const CONTENT_PADDING = 14;
+
+// const CanvasWidth = 1125;
+// const CanvasHeight = 1800;
 /**
  * 绘制图片
  */
@@ -99,81 +106,96 @@ export const canvasMeetingInviteImage = async (options: InviteOptions) => {
     avatarUrl,
     qrCodeUrl,
     bgImgUrl,
+    size = 1,
   } = options;
   const imgUrlLists = [bgImgUrl, qrCodeUrl, avatarUrl];
   const titleTips = title.length > 17 ? title.slice(0, 16) + '...' : title;
   const [bgImage, qrcodeImage, avatarImage]: any = await allImagePreload(imgUrlLists);
   //   const myCavnas = document.getElementById('my-canvas') as HTMLCanvasElement;
   const canvas = document.createElement('canvas') as HTMLCanvasElement;
-  canvas.width = 327;
-  canvas.height = 513;
+
+  const canvasWidth = CANVAS_WIDTH * size;
+  const canvasHeight = CANVAS_HEIGHT * size;
+  canvas.width = canvasWidth;
+  canvas.height = canvasHeight;
+
   const context = canvas.getContext('2d') as CanvasRenderingContext2D;
   context.rect(0, 0, canvas.width, canvas.height);
   context.fill();
 
-  context?.drawImage(bgImage, 0, 0, 654, 1026, 0, 0, 327, 513);
+  context?.drawImage(bgImage, 0, 0, canvasWidth, canvasHeight, 0, 0, canvasWidth, canvasHeight);
 
-  context.shadowOffsetY = 8; //  阴影Y轴偏移
-  context.shadowBlur = 16; // 模糊尺寸
+  //1125 * 1800
+
+  const cPadding = CONTENT_PADDING * size;
+  const cTop = CONTENT_TOP * size;
+  context.shadowOffsetY = 8 * size; //  阴影Y轴偏移
+  context.shadowBlur = 16 * size; // 模糊尺寸
   context.shadowColor = 'rgba(0, 0, 0, 0.2)'; // 颜色
   context.fillStyle = '#F4F6FA';
-  drawRoundedImg(context, 12, 161, 303, 68, null, 8, 8, 0, 0);
+  drawRoundedImg(context, cPadding, cTop, canvasWidth - cPadding * 2, 78 * size, null, 10 * size, 10* size, 0, 0);
   context.fillStyle = '#fff';
-  drawRoundedImg(context, 12, 229, 303, 247, null, 0, 0, 8, 8);
+  drawRoundedImg(context, cPadding, cTop + 78 * size, canvasWidth - cPadding * 2, 288 * size, null, 0, 0, 10* size, 10* size);
 
   context.shadowColor = 'rgba(0, 0, 0, 0)'; //取消阴影
 
-  drawRoundedImg(context, 32, 174, 48, 48, avatarImage, 24);
+  drawRoundedImg(context, 38 * size, 211 * size, 56 * size, 56 * size, avatarImage, cPadding * 2);
+
+  const fontsize14 = 14 * size;
+  const fontsize16 = 16 * size;
+  const fontsize12 = 12 * size;
+  const fontsize18 = 18 * size;
+
 
   context.fillStyle = '#020F22';
-  context.font = '14px PingFangSC-Regular';
-  context.fillText(userName, 90, 187);
+  context.font = `${fontsize16}px PingFangSC-Regular`;
+  context.fillText(userName, 104 * size, 216 * size + fontsize16);
 
   context.fillStyle = '#6A737F';
-  context.font = '14px Georgia';
+  context.font = `${fontsize16}px Georgia`;
 
-  context.fillText(inviteTips, 90, 210);
+  context.fillText(inviteTips, 104 * size, 242 * size + fontsize16);
 
   context.fillStyle = '#020F22';
-  context.font = '16px PingFangSC-Regular';
-  context.fillText(titleTips, 32, 256);
+  context.font = `${fontsize18}px PingFangSC-Regular`;
+  context.fillText(titleTips, 38 * size, 298 * size + fontsize18);
 
   context.fillStyle = '#A4ABB0';
-  context.font = '12px Georgia';
+  context.font = `${fontsize12}px Georgia`;
   //时间
-  context.fillText(timeLabel, 32, 292);
+  context.fillText(timeLabel, 38 * size, 340 * size + fontsize12);
 
   context.fillStyle = '#020F22';
-  context.font = '14px PingFangSC-Regular';
+  context.font = `${fontsize14}px PingFangSC-Regular`;
 
-  context.fillText(timeDate, 32, 312);
-  context.fillText(timeRange, 32, 332);
+  context.fillText(timeDate, 38 * size, 363 * size + fontsize14);
+  context.fillText(timeRange, 38 * size, 387 * size + fontsize14);
 
   context.fillStyle = '#A4ABB0';
-  context.font = '12px Georgia';
+  context.font = `${fontsize12}px Georgia`;
   //   //地点
-  context.fillText(addressLabel, 32, 366);
+  context.fillText(addressLabel, 38 * size, 427 * size + fontsize12);
 
   context.fillStyle = '#020F22';
-  context.font = '14px PingFangSC-Regular';
+  context.font = `${fontsize14}px PingFangSC-Regular`;
 
   const lines = meetingRoom.length / 9;
   for (let index = 0; index < lines; index++) {
     //自动换行
-    context.fillText(meetingRoom.slice(index * 9, (index + 1) * 9), 32, 386 + index * 20);
+    context.fillText(meetingRoom.slice(index * 9, (index + 1) * 9), 38 * size, 451 * size + fontsize14 + index * size * 20);
   }
 
   context.fillStyle = '#A4ABB0';
-  context.font = '12px PingFangSC-Regular';
+  context.font = `${fontsize12}px PingFangSC-Regular`;
   //手机扫描二维码入会
-  context.fillText(scanTips, 186, 412);
+  context.fillText(scanTips, 220 * size, 474 * size + fontsize12);
 
   context.fillStyle = '#BBCCE3';
-  context.font = '12px PingFangSC-Regular';
+  context.font = `${fontsize12}px PingFangSC-Regular`;
   //来自丰声会议邀请
-  context.fillText(fromTips, 116, 497);
+  context.fillText(fromTips, 132 * size, 574 * size + fontsize12);
 
-  context.drawImage(qrcodeImage, 25, 25, 250, 250, 185, 281, 110, 110);
+  context.drawImage(qrcodeImage, 25, 25, 250, 250, 211 * size, 340 * size, 126 * size, 126 * size);
 
   const base64 = canvas.toDataURL('image/png');
   //   const myImageDom = document.getElementById('my-img') as HTMLImageElement;
